@@ -81,4 +81,6 @@ main = do
     print $ sumTo20 [4,9,10,2,8]
     print $ P.filter (even) numbers
     print $ P.filter (isThree) numbers
+    print $ P.foldr (+) 0 numbers
+--    print $ foldl' (+) 0 numbers
     
