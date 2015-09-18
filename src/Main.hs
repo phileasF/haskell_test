@@ -21,6 +21,9 @@ fib n = fib (n - 1) + fib (n -2)
 filterPrime (p:xs) =
     p : filterPrime [x | x <- xs, x `mod` p /= 0]
 
+strLength :: String -> Int
+strLength []     = 0
+strLength (_:xs) = 1 + strLength xs
 
 main = do
     P.putStrLn "Test:"
@@ -41,3 +44,4 @@ main = do
     print $ P.map factorial [1..10]
     print $ P.map fib [0..17]
 --    print $ filterPrime [2..100]
+    print $ strLength "Hallo Welt"
