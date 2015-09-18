@@ -53,6 +53,8 @@ isThree :: Int -> Bool
 isThree 3 = True
 isThree _ = False
 
+numbers = [1..10]
+
 main = do
     P.putStrLn "Test:"
     print biggestInt
@@ -77,6 +79,6 @@ main = do
     print $ frob "Te"
     print $ frob "Hallo Welt"
     print $ sumTo20 [4,9,10,2,8]
-    print $ P.filter (even) [1,2,3,4,5,6,7,8,9,10]
-    print $ P.filter (isThree) [1,2,3,4,5,6,7,8,9,10]
+    print $ P.filter (even) numbers
+    print $ P.filter (isThree) numbers
     
