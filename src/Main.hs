@@ -25,6 +25,15 @@ strLength :: String -> Int
 strLength []     = 0
 strLength (_:xs) = 1 + strLength xs
 
+frob :: String -> Char
+frob []  = 'a'   -- len is NOT in scope here
+frob str
+  | len > 5   = 'x'
+  | len < 3   = 'y'
+  | otherwise = 'z'
+  where
+    len = strLength str
+
 main = do
     P.putStrLn "Test:"
     print biggestInt
@@ -45,3 +54,7 @@ main = do
     print $ P.map fib [0..17]
 --    print $ filterPrime [2..100]
     print $ strLength "Hallo Welt"
+    print $ frob "Test"
+    print $ frob "Te"
+    print $ frob "Hallo Welt"
+    
