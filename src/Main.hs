@@ -18,6 +18,10 @@ fib 0 = 1
 fib 1 = 1
 fib n = fib (n - 1) + fib (n -2)
 
+filterPrime (p:xs) =
+    p : filterPrime [x | x <- xs, x `mod` p /= 0]
+
+
 main = do
     P.putStrLn "Test:"
     print biggestInt
@@ -36,3 +40,4 @@ main = do
     print $ unpack $ minify "function test() { alert('Hello, world!'); var test = '10' }"
     print $ P.map factorial [1..10]
     print $ P.map fib [0..17]
+--    print $ filterPrime [2..100]
