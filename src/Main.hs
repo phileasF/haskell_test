@@ -3,23 +3,36 @@
 
 module Main where
 
+import Text.Jasmine as J
+import Data.ByteString.Lazy.Char8 as D
+import Prelude as P
+
 biggestInt, smallestInt :: Int
 biggestInt  = maxBound
 smallestInt = minBound
 
-factorial n = if n == 0 then 1 else n * factorial (n - 1)
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+
+fib 0 = 1
+fib 1 = 1
+fib n = fib (n - 1) + fib (n -2)
 
 main = do
-    putStrLn "Test:"
+    P.putStrLn "Test:"
     print biggestInt
     print smallestInt
 
-    putStrLn "What is 2 + 2?"
+{-    putStrLn "What is 2 + 2?"
     x <- readLn
     if x == 4
         then putStrLn "You're right!"
         else putStrLn "You're wrong!"
-
+-}
     let x = 7
-    putStr "7! = "
+    P.putStr "7! = "
     print (factorial 7)
+
+    print $ unpack $ minify "function test() { alert('Hello, world!'); var test = '10' }"
+    print $ P.map factorial [1..10]
+    print $ P.map fib [0..17]
