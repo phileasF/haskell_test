@@ -11,20 +11,25 @@ biggestInt, smallestInt :: Int
 biggestInt  = maxBound
 smallestInt = minBound
 
+-- Fakultät berechnen
 factorial 0 = 1
 factorial n = n * factorial (n - 1)
 
+-- Fibonacci
 fib 0 = 1
 fib 1 = 1
 fib n = fib (n - 1) + fib (n -2)
 
+-- Primzahlen (funktioniert noch nicht)
 filterPrime (p:xs) =
     p : filterPrime [x | x <- xs, x `mod` p /= 0]
 
+-- Länge eines Strings berechnen
 strLength :: String -> Int
 strLength []     = 0
 strLength (_:xs) = 1 + strLength xs
 
+-- Buchstabe abhängig von String-Länge
 frob :: String -> Char
 frob []  = 'a'   -- len is NOT in scope here
 frob str
@@ -33,6 +38,20 @@ frob str
   | otherwise = 'z'
   where
     len = strLength str
+
+-- Liste summieren, aber bei mehr als 20 aufhören
+-- https://www.seas.upenn.edu/~cis194/lectures/02-lists.html
+sumTo20 :: [Int] -> Int
+sumTo20 nums = go 0 nums   -- the acc. starts at 0
+  where go :: Int -> [Int] -> Int
+        go acc [] = acc   -- empty list: return the accumulated sum
+        go acc (x:xs)
+         | acc >= 20 = acc
+         | otherwise = go (acc + x) xs
+
+isThree :: Int -> Bool
+isThree 3 = True
+isThree _ = False
 
 main = do
     P.putStrLn "Test:"
@@ -57,4 +76,7 @@ main = do
     print $ frob "Test"
     print $ frob "Te"
     print $ frob "Hallo Welt"
+    print $ sumTo20 [4,9,10,2,8]
+    print $ P.filter (even) [1,2,3,4,5,6,7,8,9,10]
+    print $ P.filter (isThree) [1,2,3,4,5,6,7,8,9,10]
     
